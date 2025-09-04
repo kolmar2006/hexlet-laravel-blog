@@ -13,19 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$team = [
+    ['name' => 'Hodor', 'position' => 'programmer'],
+    ['name' => 'Joker', 'position' => 'CEO'],
+    ['name' => 'Elvis', 'position' => 'CTO'],
+];
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/about', 'about', ['name' => 'kolmar'])->name('about');
+Route::view('/about', 'about', ['team' => $team])->name('about');
 
-Route::match(['get', 'post'], '/about', function () {
-    return view('about');
-})->name('about');
+// Route::match(['get', 'post'], '/about', function () {
+//     return view('about');
+// })->name('about');
 
-Route::any('about', function () {
-    return view('about');
-})->name('about');
+// Route::any('about', function () {
+//     return view('about');
+// })->name('about');
 
 Route::redirect('/a' , 'about');
 
