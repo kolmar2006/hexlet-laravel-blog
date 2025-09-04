@@ -17,6 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function () {
+Route::view('/about', 'about', ['name' => 'kolmar'])->name('about');
+
+Route::match(['get', 'post'], '/about', function () {
     return view('about');
 })->name('about');
+
+Route::any('about', function () {
+    return view('about');
+})->name('about');
+
+Route::redirect('/a' , 'about');
+
+Route::permanentRedirect('/b', '/a');
+
